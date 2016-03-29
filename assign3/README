@@ -1,0 +1,66 @@
+*******************************************************************************
+
+              Rehnuma Tarannum, Abdul Bin Asif Niazi - COMP 2404 - Assignment 2
+              
+*******************************************************************************
+
+
+Preamble
+--------
+
+Welcome to the Brig Mangement Program. Classes adhere to MVC. The user is presented a menu
+to select from the following operations (add, view, exit).  
+
+
+Compilation Command
+-------------------
+
+Run the following command in the root directory of the files:
+
+  make
+
+Run the following command to clear the generated build and runtime files:
+
+make clean
+
+
+Launching and Operating Instructions
+------------------------------------
+
+Run the program with the following command:
+
+  ./assign2
+
+Adding a single or multiple pirates to the Brig is done by entering 1 from
+the main menu, entering in how many pirates you would like to add.
+
+Display all of the pirates currently in the Brig by entering 2 for "View Brig" from the main menu.
+
+Exit the program by entering 0 for "Exit" at the main menu.
+
+
+Files Included
+--------------
+
+Root Dir
+ |-> README
+ |-> Makefile
+ |-> UIManager.cc
+ |-> UIManager.h
+ |-> BrigManager.cc
+ |-> BrigManager.h
+ |-> Main.cc
+ |-> Brig.cc
+ |-> Brig.h
+ |-> Queue.cc
+ |-> Queue.h
+ |-> CArray.cc
+ |-> CArray.h
+ |-> Pirate.cc
+ |-> Pirate.h
+ |-> Cell.cc
+ |-> Cell.h
+ |-> random.cc
+ |-> defs.h
+ |-> UML Diagram Assign2Uml.pdf
+  

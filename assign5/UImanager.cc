@@ -1,0 +1,156 @@
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *
+ *   File:      UIManager.cc
+ *   Purpose:   Assignment 5 , Comp 2404
+ *   Author:    Rehnuma Tarannum, Abdul Bin Asif Niazi
+ *   Date:      April 7 2015
+ *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+#include <iostream>
+#include <iomanip>
+#include <string>
+#include <sstream>
+#include <cstdlib>
+#include "UImanager.h"
+
+using namespace std;
+
+UImanager::UImanager() { }
+
+void UImanager::mainMenu(int* choice)
+{
+  string str;
+
+  *choice = -1;
+
+#ifndef TEST_MODE
+  system("clear");
+#endif
+
+  cout<< "\n\n\n                   WELCOME TO THE BRIG MANAGEMENT SYSTEM \n\n";
+  cout << "( 1 )  Manage pirates" << endl;
+  cout << "( 2 )  View brig" << endl;
+  cout << "( 3 )  Identify" << endl;
+  cout << "( 0 )  Exit" << endl;
+
+  while (*choice < 0 || *choice > 3) {
+    cout << "Enter your selection:  ";
+    getline(cin, str);
+    stringstream ss(str);
+    ss >> *choice;
+  }
+}
+
+void UImanager::pirateMenu(int* choice)
+{
+  string str;
+
+  *choice = -1;
+
+#ifndef TEST_MODE
+  system("clear");
+#endif
+
+  cout<< "\n\n\n                   PIRATE MANAGEMENT MENU \n\n";
+  cout << "( 1 )  Add pirate" << endl;
+  cout << "( 2 )  Remove Pirate" << endl;
+  cout << "( 0 )  Exit" << endl;
+
+  while (*choice < 0 || *choice > 2) {
+    cout << "Enter your selection:  ";
+    getline(cin, str);
+    stringstream ss(str);
+    ss >> *choice;
+  }
+}
+
+void UImanager::pTypeMenu(int* choice)
+{
+  string str;
+
+  *choice = -1;
+
+#ifndef TEST_MODE
+  system("clear");
+#endif
+
+  cout<< "\n\n\n                   PIRATE TYPE MANAGEMENT MENU \n\n";
+  cout << "( 1 )  Add Borcs" << endl;
+  cout << "( 2 )  Add Dorcs" << endl;
+  cout << "( 3 )  Add Porcs" << endl;
+  cout << "( 0 )  Exit" << endl;
+
+  while (*choice < 0 || *choice > 3) {
+    cout << "Enter your selection:  ";
+    getline(cin, str);
+    stringstream ss(str);
+    ss >> *choice;
+  }
+}
+
+void UImanager::getNumPirates(int* numPirates)
+{
+  string    str;
+
+  cout << endl << "Enter the number of pirates:   ";
+  getline(cin, str);
+  stringstream ss1(str);
+  ss1 >> *numPirates;
+}
+void UImanager::getPiratesId(int* numPirates)
+{
+  string    str;
+
+  cout << endl << "Enter the id of the pirate:   ";
+  getline(cin, str);
+  stringstream ss2(str);
+  ss2 >> *numPirates;
+}
+
+void UImanager::printBrig(Brig* brig)
+{
+  list<Cell*> cells = brig->getCells();
+
+  cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"<<endl;
+  cout<<"Brig: #cells=" << cells.size() <<endl;
+
+  list<Cell*>::const_iterator cItr;
+
+  int i = 0;
+  cout<< "created cItor and assigned i" <<endl;
+
+  for (cItr=cells.begin(); cItr != cells.end(); ++cItr) {
+
+    cout << "--Cell "<<i<<": space remaining="<<(*cItr)->getSpace()<<endl;
+
+    PArray<Pirate*>& pa = (*cItr)->getPirates();
+    for (int j=0; j<pa.getSize(); ++j) {
+    /*if (pa[j] == 0) 
+    continue;*/
+      cout <<"----Pirate id: "<< pa[j]->getId() << "  space: " << pa[j]->getSpace() << endl;
+    }
+
+    ++i;
+  }
+}
+
+void UImanager::pirateId(string s)
+{
+  cout<<"\n"<<s<<"\n"<<endl;
+}
+
+void UImanager::showError(string err)
+{
+  cout << err << " -- press enter to continue...";
+  cin.get();
+}
+
+void UImanager::pause()
+{
+  string str;
+
+  cout << endl << "\nPress enter to continue...";
+  getline(cin, str);
+}
+

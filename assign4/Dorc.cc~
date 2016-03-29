@@ -1,0 +1,4 @@
+#include <iostream>
+#include "Dorc.h"
+
+Dorc::Dorc() : Pirate(random(2) + 4) {}

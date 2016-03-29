@@ -1,0 +1,15 @@
+#ifndef PORC_H
+#define PORC_H
+
+#include <iostream>
+#include "Pirate.h"
+
+using namespace std;
+
+class Porc : public Pirate
+{
+	public :
+		Porc();
+    		
+};
+#endif

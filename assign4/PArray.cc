@@ -1,0 +1,139 @@
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *
+ *   File:      PArray.cc
+ *   Purpose:   Assignment 4 , Comp 2404
+ *   Author:    Rehnuma Tarannum, Abul Bin Asif Niazi
+ *   Date:      Mar 24 2015
+ *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+#include <iostream>
+#include <string>
+using namespace std;
+
+#include "PArray.h"
+
+PArray::PArray() : size(0), deletedPirateSpace(0), status(0)
+{ 
+  for (int i=0; i<MAX_PIRATES; ++i)
+    elements[i] = 0;
+}
+
+PArray::~PArray() 
+{
+  for (int i=0; i<size; ++i) 
+    delete elements[i];
+}
+
+int PArray::add(Pirate *pirate)
+{
+  if (size == MAX_PIRATES)
+   { 
+    status = -1;
+    return getStatus();
+   }
+
+  elements[size] = pirate;
+  size++;
+  
+  return getStatus();
+}
+
+PArray& PArray::operator+=(Pirate* pirate)
+{
+
+  int status = add(pirate);
+  return *this;	
+}
+
+
+Pirate* PArray::getWithId(int id)
+{
+  for (int i=0; i<size; ++i) {
+    if (elements[i] == 0)
+      continue;
+    if (elements[i]->getId() == id)
+      return elements[i];
+  }
+
+  return(0);
+}
+
+Pirate* PArray::operator[](int id)
+{
+
+  return get(id);  
+}
+
+
+Pirate* PArray::get(int index)
+{
+  if (index >= 0 && index < size)
+    return elements[index];
+
+  return 0;
+}
+
+int PArray::getSize() { return size; }
+
+int PArray::remove(int n)
+{    if (size == 0){return 0;}
+     for (int i=0;i<size;i++){
+     	int id = elements[i]->getId();
+         
+        if (n == id){
+            int num = elements[i]->getSpace();
+            delete elements[i];
+            
+            for (int j =i ; j<size-1 ; j++) {
+               elements[j]= elements[j+1];    
+            } 
+            size=size-1;         
+            return num;
+           
+         }    
+     }
+     return 0;  
+}
+
+int PArray::getDeletedpirateSpace()
+{
+  int temp = deletedPirateSpace;
+  deletedPirateSpace =0;
+  return temp;
+}
+
+int PArray::getStatus()
+{
+  int temp = status;
+  status = 0;
+  return temp;
+}
+
+
+
+PArray& PArray::operator-=(Pirate* pirate)
+{
+
+  if (size != 0){
+  for (int i=0;i<size;i++){
+    if (pirate->getId() == elements[i]->getId()){
+       deletedPirateSpace = pirate->getSpace();
+       delete elements[i];
+       for (int j =i ; j<size-1 ; j++) {
+               elements[j]= elements[j+1];    
+            } 
+            size=size-1;  
+     }
+  }
+  }
+  return *this;
+}
+
+bool PArray::operator!()
+{
+  if (size != 0){
+     return true;
+  }
+  return false;
+}
+

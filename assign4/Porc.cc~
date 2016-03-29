@@ -1,0 +1,4 @@
+#include <iostream>
+#include "Porc.h"
+
+Porc::Porc() : Pirate(random(2) + 2){}

@@ -1,0 +1,42 @@
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *
+ *   File:      Brig.cc
+ *   Purpose:   Assignment 2 , Comp 2404
+ *   Author:    Rehnuma Tarannum, Abdul Bin Asif Niazi
+ *   Date:      Feb 24 2015
+ *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+#include "Cell.h"
+
+int Cell::nextId = 1;
+
+Cell::Cell(int size)
+{
+	
+	spaceRemaining = size;
+	
+  cellNumber = nextId++;
+}
+
+PArray& Cell::getPirates() { return pirates; }
+int     Cell::getSpace()   { return spaceRemaining; }
+
+
+bool Cell::fits(Pirate* pirate)
+{
+	
+  if ((spaceRemaining - pirate->getSpace()) < 0)
+    return false;
+
+  return true;
+}
+
+void Cell::reduceSpace(int pSpace)   { 
+	
+	spaceRemaining = spaceRemaining - pSpace; 
+	
+}
+
+void Cell::increaseSpace(int pSpace) { spaceRemaining += pSpace; }
+

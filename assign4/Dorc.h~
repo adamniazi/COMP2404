@@ -1,0 +1,15 @@
+#ifndef DORC_H
+#define DORC_H
+
+#include <iostream>
+#include "Pirate.h"
+
+using namespace std;
+
+class Dorc : public Pirate
+{
+	public :
+		Dorc();
+    		
+};
+#endif

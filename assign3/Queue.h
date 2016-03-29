@@ -1,0 +1,46 @@
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *
+ *   File:      Brig.cc
+ *   Purpose:   Assignment 3 , Comp 2404
+ *   Author:    Rehnuma Tarannum, Abdul Bin Asif Niazi
+ *   Date:      Mar 10 2015
+ *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+#ifndef QUEUE_H
+#define QUEUE_H
+#include <iostream>
+#include "Pirate.h"
+using namespace std;
+
+class Queue{
+      class Node 
+      {     
+            friend class Queue;
+            private:
+            Pirate* data;
+            Node*    next;
+            Node*    prev;
+      };
+
+      
+      public:
+             Queue();
+             Queue(Queue&);
+             ~Queue();
+             int push(Pirate*);
+             void pop();
+             Pirate* front();
+             bool empty();
+
+             Pirate* find(int);
+             void remove(int, Pirate*);
+             
+      private:
+              
+              Node* head;
+              
+              
+      
+      
+};
+#endif
